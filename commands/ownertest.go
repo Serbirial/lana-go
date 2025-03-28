@@ -18,6 +18,6 @@ var OwnerTestCommand = models.Command{
 	Endpoint:      "string",
 }
 
-func test(ctx *models.Context, args []string) {
+func test(ctx *models.Context, argsRaw string) {
 	ctx.Send("You are an owner.")
 }

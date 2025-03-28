@@ -45,8 +45,8 @@ func (bot LanaBot) ProcessMessage(session *discordgo.Session, message *discordgo
 			command, exists := bot.Commands[possibleCommandString]
 			if exists {
 				var _, argsraw, _ = strings.Cut(message.Content, possibleCommandString)
-				var args = strings.Fields(argsraw) // Create the context
-				ctx := &Context{bot, message.Author, message.ChannelID, message.GuildID}
+				// Create the context
+				ctx := &Context{bot, command, message.Author, argsraw, message.ChannelID, message.GuildID}
 
 				// Execute all the checks
 				for i := 0; i < len(command.Checks); i++ {
@@ -58,7 +58,7 @@ func (bot LanaBot) ProcessMessage(session *discordgo.Session, message *discordgo
 					}
 				}
 
-				command.Callback(ctx, args)
+				command.Callback(ctx, argsraw)
 			}
 		}
 	}

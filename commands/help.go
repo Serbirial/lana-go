@@ -2,6 +2,8 @@ package commands
 
 import (
 	"gobot/models"
+	"gobot/utils/checks"
+	"strings"
 )
 
 var HelpCommand = models.Command{
@@ -17,9 +19,11 @@ var HelpCommand = models.Command{
 	Endpoint:      "string",
 }
 
-func helpCommand(ctx *models.Context, args []string) {
+func helpCommand(ctx *models.Context, argsRaw string) {
 	toSend := ""
-	if len(args) > 0 {
+	var args []string = strings.Fields(argsRaw)
+
+	if checks.HasArgs(args) {
 		var command = ctx.Client.Commands[args[0]]
 
 		toSend += "**" + command.Name + "**: " + command.Desc + "\n"

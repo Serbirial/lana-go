@@ -11,7 +11,7 @@ type Command struct {
 	Parentcommand string
 
 	Checks   []func(ctx *Context) error
-	Callback func(ctx *Context, args []string)
+	Callback func(ctx *Context, args string)
 
 	Nsfw bool
 

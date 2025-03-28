@@ -17,6 +17,6 @@ var PingCommand = models.Command{
 	Endpoint:      "string",
 }
 
-func pingCommand(ctx *models.Context, args []string) {
+func pingCommand(ctx *models.Context, argsRaw string) {
 	ctx.Send("pong!")
 }

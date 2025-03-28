@@ -7,10 +7,12 @@ import (
 )
 
 type Context struct {
-	Client    LanaBot
-	Author    *discordgo.User
-	ChannelID string
-	GuildID   string
+	Client         LanaBot
+	CurrentCommand Command
+	Author         *discordgo.User
+	ArgsRaw        string
+	ChannelID      string
+	GuildID        string
 }
 
 func (ctx Context) Send(content string) *discordgo.Message {

@@ -18,7 +18,7 @@ var OwnersListCommand = models.Command{
 	Endpoint:      "string",
 }
 
-func listCommand(ctx *models.Context, args []string) {
+func listCommand(ctx *models.Context, argsRaw string) {
 	toSend := ""
 	for i := 0; i < len(ctx.Client.Owners); i++ {
 		toSend += strconv.Itoa(ctx.Client.Owners[i]) + "\n"
