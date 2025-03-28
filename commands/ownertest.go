@@ -6,17 +6,18 @@ import (
 )
 
 var OwnerTestCommand = models.Command{
-	Name:          "test",
+	Name:          "ownertest",
 	Desc:          "Shouldnt be runnable by normal users.",
-	Aliases:       []string{"t"},
+	Aliases:       []string{"ot"},
+	Args:          nil,
 	Subcommands:   []string{""},
 	Parentcommand: "none",
 	Checks:        []func(*models.Context) error{checks.IsOwner},
-	Callback:      ping,
+	Callback:      test,
 	Nsfw:          false,
 	Endpoint:      "string",
 }
 
-func test(ctx *models.Context) {
-	ctx.Send("pong!")
+func test(ctx *models.Context, args []string) {
+	ctx.Send("You are an owner.")
 }

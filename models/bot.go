@@ -25,7 +25,7 @@ const (
 type LanaBot struct {
 	Session  *discordgo.Session
 	Token    string
-	Owners   []string
+	Owners   []int
 	Prefix   string
 	Commands map[string]Command
 }
@@ -44,7 +44,8 @@ func (bot LanaBot) ProcessMessage(session *discordgo.Session, message *discordgo
 		if ok {
 			command, exists := bot.Commands[possibleCommandString]
 			if exists {
-				// Create the context
+				var _, argsraw, _ = strings.Cut(message.Content, possibleCommandString)
+				var args = strings.Fields(argsraw) // Create the context
 				ctx := &Context{bot, message.Author, message.ChannelID, message.GuildID}
 
 				// Execute all the checks
@@ -57,7 +58,7 @@ func (bot LanaBot) ProcessMessage(session *discordgo.Session, message *discordgo
 					}
 				}
 
-				command.Callback(ctx)
+				command.Callback(ctx, args)
 			}
 		}
 	}

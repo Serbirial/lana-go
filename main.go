@@ -16,9 +16,13 @@ import (
 
 func main() {
 	const prefix = "!"
-	var owners = make([]string, 0)
+	var owners = make([]int, 0)
 	var token = fs.ReadFileWhole("token.txt")
 	var commandList = make(map[string]models.Command)
+
+	// TODO Un-Hardcode this
+	owners = append(owners, 1270040138948411442)
+	//
 
 	session, err := discordgo.New("Bot " + token)
 	error.ErrorCheckPanic(err)

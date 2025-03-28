@@ -5,6 +5,9 @@ import (
 )
 
 var AllCommands = map[string]models.Command{
-	PingCommand.Name:      PingCommand,
-	OwnerTestCommand.Name: OwnerTestCommand,
+	HelpCommand.Name:       HelpCommand,
+	PingCommand.Name:       PingCommand,
+	ArgTestCommand.Name:    ArgTestCommand,
+	OwnerTestCommand.Name:  OwnerTestCommand,
+	OwnersListCommand.Name: OwnersListCommand,
 }

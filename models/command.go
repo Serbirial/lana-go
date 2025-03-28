@@ -5,11 +5,13 @@ type Command struct {
 	Desc    string
 	Aliases []string
 
+	Args map[string]string
+
 	Subcommands   []string // Names of all commands that are under this if it happens to be a parent command
 	Parentcommand string
 
 	Checks   []func(ctx *Context) error
-	Callback func(ctx *Context)
+	Callback func(ctx *Context, args []string)
 
 	Nsfw bool
 
